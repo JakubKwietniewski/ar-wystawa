@@ -2,16 +2,58 @@
 <html>
 <head>
   <meta charset="utf-8">
+
   <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.2/dist/mindar-image-aframe.prod.js"></script>
+
+  <script>
+    AFRAME.registerComponent('gallery-switcher', {
+      schema: {
+        images: { type: 'array' }
+      },
+
+      init: function () {
+
+        this.index = 0;
+
+        // główny obraz
+        this.imagePlane = this.el.querySelector('.main-image');
+
+        // strzałka
+        this.nextButton = this.el.querySelector('.next-button');
+
+        // kliknięcie strzałki
+        this.nextButton.addEventListener('click', () => {
+
+          this.index++;
+
+          // wróć do początku
+          if (this.index >= this.data.images.length) {
+            this.index = 0;
+          }
+
+          // zmień obraz
+          this.imagePlane.setAttribute(
+            'src',
+            this.data.images[this.index]
+          );
+        });
+      }
+    });
+  </script>
 </head>
 
 <body>
-<a-scene mindar-image="imageTargetSrc: targets.mind;"
-         vr-mode-ui="enabled: false"
-         device-orientation-permission-ui="enabled: true">
+
+<a-scene
+  mindar-image="imageTargetSrc: targets.mind;"
+  vr-mode-ui="enabled: false"
+  device-orientation-permission-ui="enabled: true"
+  cursor="rayOrigin: mouse"
+>
 
   <a-assets>
+
     <!-- KRZESŁO -->
     <img id="krzeslo_willa" src="img/krzeslo_willa.jpg">
     <img id="krzeslo_babcia" src="img/krzeslo_babcia.jpg">
@@ -22,24 +64,75 @@
     <img id="fotel_babcia" src="img/fotel_babcia.jpg">
     <img id="fotel_kraina" src="img/fotel_kraina.jpg">
 
+    <!-- STRZAŁKA -->
+    <img id="arrowRight" src="img/arrow-right.png">
+
   </a-assets>
 
-  <a-camera position="0 0 0" look-controls="enabled: false"></a-camera>
+  <a-camera
+    position="0 0 0"
+    look-controls="enabled: false">
+  </a-camera>
 
+  <!-- ========================= -->
   <!-- KRZESŁO -->
-  <a-entity mindar-image-target="targetIndex: 1">
-    <a-plane src="#krzeslo_willa" position="-1.2 0 0" width="1" height="1.41"></a-plane>
-    <a-plane src="#krzeslo_babcia" position="0 0 0" width="1" height="1.41"></a-plane>
-    <a-plane src="#krzeslo_kraina" position="1.2 0 0" width="1" height="1.41"></a-plane>
+  <!-- ========================= -->
+
+  <a-entity
+    mindar-image-target="targetIndex: 1"
+    gallery-switcher="images: #krzeslo_willa, #krzeslo_babcia, #krzeslo_kraina"
+  >
+
+    <!-- OBRAZ -->
+    <a-plane
+      class="main-image"
+      src="#krzeslo_willa"
+      position="0 0 0"
+      width="1"
+      height="1.41">
+    </a-plane>
+
+    <!-- STRZAŁKA -->
+    <a-plane
+      class="next-button"
+      src="#arrowRight"
+      position="0.9 0 0.01"
+      width="0.25"
+      height="0.25">
+    </a-plane>
+
   </a-entity>
 
+  <!-- ========================= -->
   <!-- FOTEL -->
-  <a-entity mindar-image-target="targetIndex: 0">
-    <a-plane src="#fotel_willa" position="-1.2 0 0" width="1" height="1.41"></a-plane>
-    <a-plane src="#fotel_babcia" position="0 0 0" width="1" height="1.41"></a-plane>
-    <a-plane src="#fotel_kraina" position="1.2 0 0" width="1" height="1.41"></a-plane>
+  <!-- ========================= -->
+
+  <a-entity
+    mindar-image-target="targetIndex: 0"
+    gallery-switcher="images: #fotel_willa, #fotel_babcia, #fotel_kraina"
+  >
+
+    <!-- OBRAZ -->
+    <a-plane
+      class="main-image"
+      src="#fotel_willa"
+      position="0 0 0"
+      width="1"
+      height="1.41">
+    </a-plane>
+
+    <!-- STRZAŁKA -->
+    <a-plane
+      class="next-button"
+      src="#arrowRight"
+      position="0.9 0 0.01"
+      width="0.25"
+      height="0.25">
+    </a-plane>
+
   </a-entity>
 
 </a-scene>
+
 </body>
 </html>
