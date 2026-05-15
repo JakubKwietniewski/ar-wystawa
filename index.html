@@ -7,11 +7,52 @@
 </head>
 
 <body>
-<a-scene mindar-image="imageTargetSrc: targets.mind;"
-         vr-mode-ui="enabled: false"
-         device-orientation-permission-ui="enabled: true">
+
+<script>
+  const galleries = {
+    krzeslo: [
+      "#krzeslo_willa",
+      "#krzeslo_babcia",
+      "#krzeslo_kraina"
+    ],
+    fotel: [
+      "#fotel_willa",
+      "#fotel_babcia",
+      "#fotel_kraina"
+    ]
+  };
+
+  let currentIndex = {
+    krzeslo: 0,
+    fotel: 0
+  };
+
+  function changeImage(type, direction) {
+    const images = galleries[type];
+
+    currentIndex[type] += direction;
+
+    if (currentIndex[type] < 0) {
+      currentIndex[type] = images.length - 1;
+    }
+
+    if (currentIndex[type] >= images.length) {
+      currentIndex[type] = 0;
+    }
+
+    const plane = document.querySelector(`#${type}-image`);
+    plane.setAttribute("src", images[currentIndex[type]]);
+  }
+</script>
+
+<a-scene
+  mindar-image="imageTargetSrc: targets.mind;"
+  vr-mode-ui="enabled: false"
+  device-orientation-permission-ui="enabled: true"
+>
 
   <a-assets>
+
     <!-- KRZESŁO -->
     <img id="krzeslo_willa" src="img/krzeslo_willa.jpg">
     <img id="krzeslo_babcia" src="img/krzeslo_babcia.jpg">
@@ -28,18 +69,69 @@
 
   <!-- KRZESŁO -->
   <a-entity mindar-image-target="targetIndex: 0">
-    <a-plane src="#krzeslo_willa" position="-0.7 0 0" width="0.8" height="0.8"></a-plane>
-    <a-plane src="#krzeslo_babcia" position="0 0 0" width="0.8" height="0.8"></a-plane>
-    <a-plane src="#krzeslo_kraina" position="0.7 0 0" width="0.8" height="0.8"></a-plane>
+
+    <!-- GŁÓWNY OBRAZ -->
+    <a-plane
+      id="krzeslo-image"
+      src="#krzeslo_willa"
+      position="0 0 0"
+      width="1"
+      height="1">
+    </a-plane>
+
+    <!-- LEWA STRZAŁKA -->
+    <a-text
+      value="<"
+      position="-0.9 0 0"
+      scale="2 2 2"
+      color="white"
+      onclick="changeImage('krzeslo', -1)">
+    </a-text>
+
+    <!-- PRAWA STRZAŁKA -->
+    <a-text
+      value=">"
+      position="0.9 0 0"
+      scale="2 2 2"
+      color="white"
+      onclick="changeImage('krzeslo', 1)">
+    </a-text>
+
   </a-entity>
 
   <!-- FOTEL -->
   <a-entity mindar-image-target="targetIndex: 1">
-    <a-plane src="#fotel_willa" position="-0.7 0 0" width="0.8" height="0.8"></a-plane>
-    <a-plane src="#fotel_babcia" position="0 0 0" width="0.8" height="0.8"></a-plane>
-    <a-plane src="#fotel_kraina" position="0.7 0 0" width="0.8" height="0.8"></a-plane>
+
+    <!-- GŁÓWNY OBRAZ -->
+    <a-plane
+      id="fotel-image"
+      src="#fotel_willa"
+      position="0 0 0"
+      width="1"
+      height="1">
+    </a-plane>
+
+    <!-- LEWA STRZAŁKA -->
+    <a-text
+      value="<"
+      position="-0.9 0 0"
+      scale="2 2 2"
+      color="white"
+      onclick="changeImage('fotel', -1)">
+    </a-text>
+
+    <!-- PRAWA STRZAŁKA -->
+    <a-text
+      value=">"
+      position="0.9 0 0"
+      scale="2 2 2"
+      color="white"
+      onclick="changeImage('fotel', 1)">
+    </a-text>
+
   </a-entity>
 
 </a-scene>
+
 </body>
 </html>
