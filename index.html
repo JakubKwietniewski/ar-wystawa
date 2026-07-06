@@ -12,7 +12,7 @@
 
     <a-scene mindar-image="imageTargetSrc: targets.mind; filterMinCF:0.0001; filterBeta: 0.001;" color-space="sRGB" renderer="colorManagement: true, physicallyCorrectLights" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       
-<!-- Deklaracja Twoich oryginalnych nazw plików z uwzględnieniem folderu img/ -->
+      <!-- Deklaracja biblioteki obrazów (folder img/) -->
       <a-assets>
         <img id="blat_kraina" src="img/blat_kraina.jpg">
         <img id="blat_willa" src="img/blat_willa.jpg">
@@ -32,56 +32,58 @@
 
       <!-- ========================================================== -->
       <!-- 1. BLAT (targetIndex: 0)                                   -->
-      <!-- Wyświetla: blat_kraina po lewej, blat_willa po prawej      -->
+      <!-- Wyświetla: blat_kraina na GÓRZE, blat_willa na DOLE         -->
       <!-- ========================================================== -->
       <a-entity mindar-image-target="targetIndex: 0">
-        <a-plane src="#blat_kraina" position="-1.2 0 -0.1" height="1" width="1"></a-plane>
-        <a-plane src="#blat_willa" position="1.2 0 -0.1" height="1" width="1"></a-plane>
+        <!-- Obraz na GÓRZE: Y = 1.2 -->
+        <a-plane src="#blat_kraina" position="0 1.2 -0.1" height="1" width="0.707"></a-plane>
+        <!-- Obraz na DOLE: Y = -1.2 -->
+        <a-plane src="#blat_willa" position="0 -1.2 -0.1" height="1" width="0.707"></a-plane>
       </a-entity>
 
       <!-- ========================================================== -->
       <!-- 2. FOTEL (targetIndex: 1)                                  -->
-      <!-- Wyświetla: fotel_kraina po lewej, fotel_babcia po prawej   -->
+      <!-- Wyświetla: fotel_kraina na GÓRZE, fotel_babcia na DOLE     -->
       <!-- ========================================================== -->
       <a-entity mindar-image-target="targetIndex: 1">
-        <a-plane src="#fotel_kraina" position="-1.2 0 -0.1" height="1" width="1"></a-plane>
-        <a-plane src="#fotel_babcia" position="1.2 0 -0.1" height="1" width="1"></a-plane>
+        <a-plane src="#fotel_kraina" position="0 1.2 -0.1" height="1" width="0.707"></a-plane>
+        <a-plane src="#fotel_babcia" position="0 -1.2 -0.1" height="1" width="0.707"></a-plane>
       </a-entity>
 
       <!-- ========================================================== -->
       <!-- 3. KREDENS (targetIndex: 2)                                -->
-      <!-- Wyświetla: kredens_kraina po lewej, kredens_willa po prawej-->
+      <!-- Wyświetla: kredens_kraina na GÓRZE, kredens_willa na DOLE  -->
       <!-- ========================================================== -->
       <a-entity mindar-image-target="targetIndex: 2">
-        <a-plane src="#kredens_kraina" position="-1.2 0 -0.1" height="1" width="1"></a-plane>
-        <a-plane src="#kredens_willa" position="1.2 0 -0.1" height="1" width="1"></a-plane>
+        <a-plane src="#kredens_kraina" position="0 1.2 -0.1" height="1" width="0.707"></a-plane>
+        <a-plane src="#kredens_willa" position="0 -1.2 -0.1" height="1" width="0.707"></a-plane>
       </a-entity>
 
       <!-- ========================================================== -->
       <!-- 4. KRZESŁO (targetIndex: 3)                                -->
-      <!-- Wyświetla: krzeslo_willa po lewej, krzeslo_babcia po prawej-->
+      <!-- Wyświetla: krzeslo_willa na GÓRZE, krzeslo_babcia na DOLE   -->
       <!-- ========================================================== -->
       <a-entity mindar-image-target="targetIndex: 3">
-        <a-plane src="#krzeslo_willa" position="-1.2 0 -0.1" height="1" width="1"></a-plane>
-        <a-plane src="#krzeslo_babcia" position="1.2 0 -0.1" height="1" width="1"></a-plane>
+        <a-plane src="#krzeslo_willa" position="0 1.2 -0.1" height="1" width="0.707"></a-plane>
+        <a-plane src="#krzeslo_babcia" position="0 -1.2 -0.1" height="1" width="0.707"></a-plane>
       </a-entity>
 
       <!-- ========================================================== -->
       <!-- 5. LAMPA (targetIndex: 4)                                  -->
-      <!-- Wyświetla: lampa_willa po lewej, lampa_babcia po prawej    -->
+      <!-- Wyświetla: lampa_willa na GÓRZE, lampa_babcia na DOLE       -->
       <!-- ========================================================== -->
       <a-entity mindar-image-target="targetIndex: 4">
-        <a-plane src="#lampa_willa" position="-1.2 0 -0.1" height="1" width="1"></a-plane>
-        <a-plane src="#lampa_babcia" position="1.2 0 -0.1" height="1" width="1"></a-plane>
+        <a-plane src="#lampa_willa" position="0 1.2 -0.1" height="1" width="0.707"></a-plane>
+        <a-plane src="#lampa_babcia" position="0 -1.2 -0.1" height="1" width="0.707"></a-plane>
       </a-entity>
 
       <!-- ========================================================== -->
       <!-- 6. STÓŁ (targetIndex: 5)                                   -->
-      <!-- Wyświetla: stol_kraina po lewej, stol_babcia po prawej     -->
+      <!-- Wyświetla: stol_kraina na GÓRZE, stol_babcia na DOLE       -->
       <!-- ========================================================== -->
       <a-entity mindar-image-target="targetIndex: 5">
-        <a-plane src="#stol_kraina" position="-1.2 0 -0.1" height="1" width="1"></a-plane>
-        <a-plane src="#stol_babcia" position="1.2 0 -0.1" height="1" width="1"></a-plane>
+        <a-plane src="#stol_kraina" position="0 1.2 -0.1" height="1" width="0.707"></a-plane>
+        <a-plane src="#stol_babcia" position="0 -1.2 -0.1" height="1" width="0.707"></a-plane>
       </a-entity>
 
     </a-scene>
